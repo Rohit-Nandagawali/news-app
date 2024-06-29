@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">News App</string>
+    <string name="title_activity_drawer_actvity">DrawerActvity</string>
+    <string name="nav_header_title">News App</string>
+    <string name="nav_header_subtitle">Your local news app</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Publish News</string>
+    <string name="menu_slideshow">Profile</string>
+    <string name="default_web_client_id">73976043849-b0vm9su601dli3fqme6vvhi37i7q4i3r.apps.googleusercontent.com</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="select_category">Select Category</string>
+    <string-array name="news_categories">
+        <item>Select Category</item>
+        <item>Sports</item>
+        <item>Politics</item>
+        <item>Technology</item>
+        <item>Entertainment</item>
+        <item>Business</item>
+        <!-- Add more categories as needed -->
+    </string-array>
+
+
+</resources>
