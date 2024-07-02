@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -52,7 +53,39 @@ public class Home extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         setupRv(); //setting up recycler view
+        setupSearchView(); //for searching
         super.onViewCreated(view, savedInstanceState);
+    }
+
+    private void setupSearchView() {
+        binding.searchview.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                filter(newText); //whatever text user enter, search for this
+                return false;
+            }
+        });
+    }
+
+    //filter method required for searching
+    private void filter(String newText) {
+        ArrayList<Model> filtered_list = new ArrayList<>();
+        for(Model item:list){
+            if (item.getTittle().toString().toLowerCase().contains(newText)){
+                filtered_list.add(item);
+            }
+        }
+        if (filtered_list.isEmpty()){
+            //
+        }
+        else{
+            adapter.filter_list(filtered_list);
+        }
     }
 
     private void setupRv() {
@@ -74,7 +107,7 @@ public class Home extends Fragment {
         adapter = new Adapter(list);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         linearLayoutManager.setStackFromEnd(true);
-        linearLayoutManager.setReverseLayout(true);
+        linearLayoutManager.setReverseLayout(true); //new news will be shown at top
         binding.rvNews.setLayoutManager(linearLayoutManager);
         binding.rvNews.setAdapter(adapter);
     }

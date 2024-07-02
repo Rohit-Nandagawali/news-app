@@ -19,6 +19,7 @@
         <item>Technology</item>
         <item>Entertainment</item>
         <item>Business</item>
+        <item>General</item>
         <!-- Add more categories as needed -->
     </string-array>
 

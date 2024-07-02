@@ -100,7 +100,7 @@
                 android:fontFamily="@font/poppins"
                 android:gravity="start"
                 android:hint="Description"
-                android:inputType="textPersonName"
+                android:inputType="textMultiLine"
                 android:minHeight="150dp"
                 android:padding="15dp"
                 android:textColor="@color/black" />
@@ -132,21 +132,48 @@
                 android:entries="@array/news_categories"
                 android:prompt="@string/select_category" />
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="15dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/btn_cancle"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="60dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/light_bg"
+                    android:backgroundTint="#D1D0D0"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:gravity="center"
+                    android:text="Cancel"
+                    android:textColor="@color/black"
+                    android:textSize="19sp" />
 
-            <TextView
-                android:id="@+id/btn_publish"
-                android:layout_width="250dp"
-                android:layout_height="60dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="15dp"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/light_bg"
-                android:backgroundTint="@color/black"
-                android:fontFamily="@font/poppins_semibold"
-                android:gravity="center"
-                android:text="Publish"
-                android:textColor="@color/white"
-                android:textSize="19sp" />
+
+                <TextView
+                    android:id="@+id/btn_publish"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="60dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/light_bg"
+                    android:backgroundTint="@color/black"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:gravity="center"
+                    android:text="Publish"
+                    android:textColor="@color/white"
+                    android:textSize="19sp" />
+            </LinearLayout>
+
+
+
 
         </LinearLayout>
 

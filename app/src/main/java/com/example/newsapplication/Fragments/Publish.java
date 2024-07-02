@@ -60,6 +60,15 @@ public class Publish extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         selectimage();//to open gallery to select image
+        // Adding cancel button functionality
+        binding.btnCancle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Navigating to DrawerActivity
+                Intent intent = new Intent(getActivity(), DrawerActivity.class);
+                startActivity(intent);
+            }
+        });
         super.onViewCreated(view, savedInstanceState);
     }
 

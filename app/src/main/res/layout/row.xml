@@ -24,17 +24,16 @@
         <TextView
             android:id="@+id/category"
             android:layout_width="wrap_content"
-            android:paddingHorizontal="5dp"
+            android:paddingHorizontal="10dp"
             android:paddingVertical="0dp"
             android:layout_height="22dp"
             android:layout_margin="10dp"
             android:background="@drawable/light_bg"
-            android:backgroundTint="@color/light_white"
+            android:backgroundTint="#C6020202"
             android:fontFamily="@font/poppins_semibold"
             android:gravity="center"
             android:text="Sports"
-            android:textColor="@color/dark_black"
-
+            android:textColor="@color/white"
             android:textSize="10sp" />
     </androidx.cardview.widget.CardView>
 
@@ -95,7 +94,7 @@
             android:id="@+id/textView10"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="7dp"
+            android:layout_marginTop="1dp"
             android:layout_marginBottom="0dp"
             android:fontFamily="@font/poppins_medium"
             android:drawableLeft="@drawable/baseline_share_24"

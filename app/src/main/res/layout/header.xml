@@ -30,6 +30,6 @@
         android:textSize="14sp"
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins"
-        android:text="abcd@gmail.com" />
+        android:text="Stay Informed, Stay Ahead – Your News, Your Way!" />
 
 </LinearLayout>
