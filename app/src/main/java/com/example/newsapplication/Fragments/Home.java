@@ -8,14 +8,18 @@ import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.newsapplication.Adapter;
 import com.example.newsapplication.Model;
 import com.example.newsapplication.R;
 import com.example.newsapplication.databinding.FragmentHomeBinding;
+import com.google.android.material.chip.Chip;
+import com.google.android.material.chip.ChipGroup;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -23,6 +27,7 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Home extends Fragment {
 
@@ -54,7 +59,31 @@ public class Home extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         setupRv(); //setting up recycler view
         setupSearchView(); //for searching
+        setupChipGroup(); // For category filtering
         super.onViewCreated(view, savedInstanceState);
+    }
+
+    private void setupChipGroup() {
+        binding.filters.setOnCheckedStateChangeListener(new ChipGroup.OnCheckedStateChangeListener() {
+            @Override
+            public void onCheckedChanged(@NonNull ChipGroup group, @NonNull List<Integer> checkedIds) {
+
+                if (checkedIds.isEmpty()) {
+                    // Handle case where no chip is selected
+
+                } else {
+                    // Assuming single selection mode, get the first checked id
+                    filter(binding.searchview.getQuery().toString(), getSelectedCategory()); // Filter by text and selected category
+                }
+            }
+
+        });
+
+        // Make sure 'All' chip is selected by default
+        Chip chipAll = binding.filters.findViewById(R.id.chipAll);
+        if (chipAll != null) {
+            chipAll.setChecked(true);
+        }
     }
 
     private void setupSearchView() {
@@ -66,24 +95,44 @@ public class Home extends Fragment {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                filter(newText); //whatever text user enter, search for this
+                filter(newText,getSelectedCategory()); //whatever text user enter, search for this
                 return false;
             }
         });
     }
 
+
+    //Checking which chip is selected
+    private String getSelectedCategory() {
+        int selectedChipId = binding.filters.getCheckedChipId();
+        if (selectedChipId == View.NO_ID) {
+            return "All";
+        } else {
+            Chip selectedChip = binding.filters.findViewById(selectedChipId);
+            return selectedChip != null ? selectedChip.getText().toString() : "All";
+        }
+    }
+
     //filter method required for searching
-    private void filter(String newText) {
+    private void filter(String newText, String selectedCategory) {
         ArrayList<Model> filtered_list = new ArrayList<>();
         for(Model item:list){
-            if (item.getTittle().toString().toLowerCase().contains(newText)){
+            //getting category
+            boolean matchesCategory = selectedCategory.equals("All") || item.getCategory().equals(selectedCategory);
+            //getting title
+            boolean matchesText = item.getTittle().toLowerCase().contains(newText.toLowerCase());
+
+            //searching on the basis of category and title
+            if (matchesCategory && matchesText) {
                 filtered_list.add(item);
             }
         }
-        if (filtered_list.isEmpty()){
-            //
-        }
-        else{
+        // Update RecyclerView adapter with filtered list
+        if (filtered_list.isEmpty()) {
+            // Show a toast or message indicating no news is available
+            adapter.filter_list(new ArrayList<>());
+            Toast.makeText(getContext(), "No news available for '"+selectedCategory+"' category or search", Toast.LENGTH_SHORT).show();
+        } else {
             adapter.filter_list(filtered_list);
         }
     }

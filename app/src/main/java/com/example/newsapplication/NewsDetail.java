@@ -21,6 +21,8 @@ public class NewsDetail extends AppCompatActivity {
     ActivityNewsDetailBinding binding;
     String id; //id that we got from previous screen
     String  title, desc,count,date,category,author;
+
+    String appLink="https://www.google.com/";
     int n_count;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,8 +69,9 @@ public class NewsDetail extends AppCompatActivity {
         ) {
             @Override
             public void onClick(View v) {
+
                 Intent intent = new Intent(Intent.ACTION_SEND);
-                String shareBody = "*"+title+"*\n\n"+desc+"\n\n\n- Published by "+author+"\n"+date;
+                String shareBody = "*"+title+"*\n\n"+desc+"\n- Published by "+author+"\n"+date+"\n\n\nDownload News App Now\n"+appLink;
                 intent.setType("text/plain");
                 intent.putExtra(Intent.EXTRA_SUBJECT, title);
                 intent.putExtra(Intent.EXTRA_TEXT, shareBody);

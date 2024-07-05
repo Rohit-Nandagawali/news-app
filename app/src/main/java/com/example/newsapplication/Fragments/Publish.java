@@ -21,6 +21,8 @@ import android.widget.Toast;
 import com.example.newsapplication.DrawerActivity;
 import com.example.newsapplication.R;
 import com.example.newsapplication.databinding.FragmentPublishBinding;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -35,6 +37,7 @@ import java.util.HashMap;
 public class Publish extends Fragment {
     FragmentPublishBinding binding;
     Uri filepath;
+    GoogleSignInAccount account;
 
 
     public Publish() {
@@ -61,6 +64,9 @@ public class Publish extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         selectimage();//to open gallery to select image
         // Adding cancel button functionality
+
+        account = GoogleSignIn.getLastSignedInAccount(getContext()); //geting user data
+        binding.bAuthor.setText(account.getDisplayName());
         binding.btnCancle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

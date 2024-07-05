@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -155,7 +156,15 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
                                     public void onClick(DialogInterface dialog, int which) {
                                         //deleting it from firebase
                                         FirebaseFirestore.getInstance().collection("News").
-                                                document(model.getId()).delete();
+                                                document(model.getId()).delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                                            @Override
+                                            public void onSuccess(Void aVoid) {
+                                                // Deletion successful, navigate to drawer activity
+                                                Intent intent = new Intent(holder.author.getContext(), DrawerActivity.class);
+                                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                                holder.author.getContext().startActivity(intent);
+                                            }
+                                        });
                                         dialog.dismiss();
                                     }
                                 });
@@ -165,6 +174,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
                 });
                 AlertDialog dialog = builder.create();
                 dialog.show();
+
                 return false;
             }
         });
