@@ -82,7 +82,7 @@
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="10dp"
             android:background="@drawable/light_bg"
-            android:backgroundTint="#C6020202"
+            android:backgroundTint="#000000"
             android:fontFamily="@font/poppins_semibold"
             android:gravity="center"
             android:paddingHorizontal="10dp"

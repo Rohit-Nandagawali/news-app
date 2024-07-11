@@ -58,7 +58,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
 
         Glide.with(holder.author.getContext()).load(model.getImg()).into(holder.img);
 
-        //on single press open new in new screen
+        //on single press open new in new screen(NewsDetail)
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -82,7 +82,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
                         u_dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                         u_dialog.setCancelable(false);
                         u_dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
-                        u_dialog.setContentView(R.layout.update_dialog);
+                        u_dialog.setContentView(R.layout.update_dialog); //custom dialog
                         u_dialog.show();
 
                         //getting edittext

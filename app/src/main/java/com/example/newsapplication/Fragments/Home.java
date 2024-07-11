@@ -145,8 +145,9 @@ public class Home extends Fragment {
             @Override
             public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
                 list.clear();
+
                 for (DocumentSnapshot snapshot:value.getDocuments()){
-                    model = snapshot.toObject(Model.class);
+                    model = snapshot.toObject(Model.class); //structuring data into model that we have created
                     model.setId(snapshot.getId());
                     list.add(model); //and storing that data into list
                 }
@@ -158,7 +159,7 @@ public class Home extends Fragment {
         linearLayoutManager.setStackFromEnd(true);
         linearLayoutManager.setReverseLayout(true); //new news will be shown at top
         binding.rvNews.setLayoutManager(linearLayoutManager);
-        binding.rvNews.setAdapter(adapter);
+        binding.rvNews.setAdapter(adapter); //actual design put here
     }
 
     @Override

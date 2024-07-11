@@ -22,7 +22,7 @@ public class NewsDetail extends AppCompatActivity {
     String id; //id that we got from previous screen
     String  title, desc,count,date,category,author;
 
-    String appLink="https://www.google.com/";
+    String appLink="https://drive.google.com/drive/folders/1jEEDcqM_WUz8O1fzyZEqYkr75RkNaoj1?usp=sharing";
     int n_count;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +71,7 @@ public class NewsDetail extends AppCompatActivity {
             public void onClick(View v) {
 
                 Intent intent = new Intent(Intent.ACTION_SEND);
-                String shareBody = "*"+title+"*\n\n"+desc+"\n- Published by "+author+"\n"+date+"\n\n\nDownload News App Now\n"+appLink;
+                String shareBody = "*"+title+"*\n\n"+desc+"\n- Published by "+author+"\n"+date+"\n\n\nDownload TownTalk Now\n"+appLink;
                 intent.setType("text/plain");
                 intent.putExtra(Intent.EXTRA_SUBJECT, title);
                 intent.putExtra(Intent.EXTRA_TEXT, shareBody);

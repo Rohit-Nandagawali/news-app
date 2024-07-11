@@ -1,7 +1,7 @@
 <resources>
-    <string name="app_name">News App</string>
+    <string name="app_name">TownTalk</string>
     <string name="title_activity_drawer_actvity">DrawerActvity</string>
-    <string name="nav_header_title">News App</string>
+    <string name="nav_header_title">TownTalk</string>
     <string name="nav_header_subtitle">Your local news app</string>
 
     <string name="menu_home">Home</string>
